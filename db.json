@@ -9,12 +9,20 @@
       "img_url": "https://books.google.com/books/content?id=3S8Rwr-iBdoC&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
       "users": [
         {
+          "id": 9,
+          "username": "alex"
+        },
+        {
+          "id": 3,
+          "username": "marvin"
+        },
+        {
           "id": 2,
           "username": "auer"
         },
         {
-          "id": 8,
-          "username": "maverick"
+          "id": 1,
+          "username": "pouros"
         }
       ]
     },

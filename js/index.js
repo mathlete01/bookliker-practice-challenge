@@ -1,19 +1,42 @@
 document.addEventListener("DOMContentLoaded", function() {
 
     const url = "http://localhost:3000/books"
+    const me = {"id": 1, "username": "pouros"}
 
     const listPanel = document.getElementById("list-panel")
     const showPanel = document.getElementById("show-panel")
 
+    function likeBook(book){
+        book.users.push(me)
+
+        fetch(`${url}/${me.id}`, {
+            method: "PATCH",
+            headers: {
+                "Content-Type": "application/json",
+                "Accept": "application/json"
+            },
+            body: JSON.stringify({
+                "users": book.users
+            })
+        })
+
+        showBook(book)
+
+    }
+    
+
     function showBook(book){
-        const showUL = document.createElement("ul")
+        //const showUL = document.createElement("ul")
         let image = document.createElement("img")
-        let pTitle = document.createElement("li")
+        let pTitle = document.createElement("p")
         let pSubtitle = document.createElement("p")
         let pAuthor = document.createElement("p")
         let pDesc = document.createElement("p")
         let ulUsers = document.createElement("ul")
         let likeBtn = document.createElement("button")
+
+        //console.dir(`showBook: book.users[1].id = ${book.users[1].id}`)
+        likeBtn.addEventListener("click", ()=> likeBook(book))
 
         image.src = book.img_url
         pTitle.innerText = book.title
@@ -27,17 +50,17 @@ document.addEventListener("DOMContentLoaded", function() {
 
         let users = book.users
         for (user of users){
-            console.log(`user.username = ${user.username}`)
             let userLI = document.createElement("li")
             userLI.innerText = user.username
             ulUsers.appendChild(userLI)
         }
 
-        showUL.appendChild(pTitle)
-        showPanel.appendChild(showUL)
+        // showUL.appendChild(pTitle)
+        // showPanel.appendChild(showUL)
         showPanel.appendChild(image)
-        showPanel.appendChild(pAuthor)
+        showPanel.appendChild(pTitle)
         showPanel.appendChild(pSubtitle)
+        showPanel.appendChild(pAuthor)
         showPanel.appendChild(pDesc)
         showPanel.appendChild(ulUsers)
         showPanel.appendChild(likeBtn)
