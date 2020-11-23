@@ -1,18 +1,42 @@
 document.addEventListener("DOMContentLoaded", function() {
 
-    let url = "http://localhost:3000/books"
+    const url = "http://localhost:3000/books"
 
-    let listPanel = document.getElementById("list-panel")
+    const listPanel = document.getElementById("list-panel")
+    const showPanel = document.getElementById("show-panel")
+
+    function showBook(event){
+        //console.log(`showBook called`)
+        console.log(`event.target.id = ${event.target.id}`)
+        // let img = document.createElement("image")
+        // let pTitle = document.createElement("p")
+        // let pSubtitle = document.createElement("p")
+        // let pAuthor = document.createElement("p")
+        // let pDesc = document.createElement("p")
+        // let ulUsers = document.createElement("ul")
+        // let likeBtn = document.createElement("button")
+
+        // img.src = book.img_url
+        // pTitle.innerText = book.title
+        // pSubtitle.innerText = book.subtitle
+        // pAuthor.innerText = book.author
+        // pDesc.innerText = book.description
+        // ulUsers.innerText = "Users"
+
+        // showPanel.appendChild(img, pTitle)
+    }
 
     function createList(books){
-        //console.dir(`books[1].title = ${books[1].title}`)
-        let ul = document.createElement("ul")
+        const ul = document.createElement("ul")
+        ul.addEventListener("click", (event) => showBook(event))
         for(let i = 0; i < books.length; i ++){
             let book = books[i]
             let li = document.createElement("li")
+            li.setAttribute("id", book.id)
             li.innerText = book.title
-            listPanel.appendChild(li)
+            ul.appendChild(li)
         }
+        listPanel.appendChild(ul)
     }
 
     function fetchContent(url){
