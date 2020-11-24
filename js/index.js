@@ -2,7 +2,6 @@ document.addEventListener("DOMContentLoaded", function() {
 
     const url = "http://localhost:3000/books"
     const me = {"id": 1, "username": "pouros"}
-
     const listPanel = document.getElementById("list-panel")
     const showPanel = document.getElementById("show-panel")
 
@@ -24,7 +23,6 @@ document.addEventListener("DOMContentLoaded", function() {
 
     }
     
-
     function showBook(book){
         //const showUL = document.createElement("ul")
         let image = document.createElement("img")
